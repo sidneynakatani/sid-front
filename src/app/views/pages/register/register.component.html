@@ -1,0 +1,107 @@
+<div (click)="aoClicarNaTela()" class="bg-light dark:bg-transparent min-vh-100 d-flex flex-row align-items-center">
+  <c-container>
+    <c-row class="justify-content-center">
+      <c-col lg="7" md="9" xl="6">
+        <c-card class="mx-4">
+          <c-card-body class="p-4">
+            <form cForm>
+              <h3>Registro</h3>
+              <c-input-group class="mb-3">
+                <span cInputGroupText>
+                  <svg cIcon name="cilUser"></svg>
+                </span>
+                <input [(ngModel)]="nome" name="nome"  autoComplete="nome" cFormControl placeholder="Nome" />
+              </c-input-group>
+              <c-input-group class="mb-3">
+                <span cInputGroupText>&#64;</span>
+                <input [(ngModel)]="email" name="email" autoComplete="email" cFormControl placeholder="Email" />
+              </c-input-group>
+              <c-input-group class="mb-3">
+                <span cInputGroupText>
+                  <svg cIcon name="cilLockLocked"></svg>
+                </span>
+                <input [(ngModel)]="senha" name="senha" autoComplete="new-password" cFormControl placeholder="senha" type="password" />
+              </c-input-group>
+              <c-input-group class="mb-4">
+                <span cInputGroupText>
+                  <svg cIcon name="cilLockLocked"></svg>
+                </span>
+                <input [(ngModel)]="senha_confirmacao" name="senha_confirmacao" autoComplete="new-password" cFormControl placeholder="Repita Senha" type="password" />
+              </c-input-group>
+              <c-input-group class="mb-3">
+                <span cInputGroupText>
+                  <svg cIcon name="cilMap"></svg>
+                </span>
+                <input [(ngModel)]="logradouro" name="logradouro" autoComplete="logradouro" cFormControl placeholder="Logradouro" />
+              </c-input-group>
+
+              <div class="input-group mb-3">
+                <span cInputGroupText>
+                  <svg cIcon name="cilMap"></svg>
+                </span>
+                <input [(ngModel)]="numero" name="numero" type="text" class="form-control" placeholder="Número" aria-label="numero">
+                <span cInputGroupText>
+                  <svg cIcon name="cilMap"></svg>
+                </span>
+                <input [(ngModel)]="complemento" name="complemento" type="text" class="form-control" placeholder="Complemento" aria-label="complemento">
+              </div>
+
+
+              <c-input-group class="mb-3">
+                <span cInputGroupText>
+                  <svg cIcon name="cilMap"></svg>
+                </span>
+                <input [(ngModel)]="bairro" name="bairro" autoComplete="bairro" cFormControl placeholder="Bairro" />
+              </c-input-group>
+
+              <div class="input-group mb-3">
+                <span cInputGroupText>
+                  <svg cIcon name="cilMap"></svg>
+                </span>
+                <input [(ngModel)]="cidade" name="cidade" type="text" class="form-control" placeholder="Cidade" aria-label="cidade">
+                <span cInputGroupText>
+                  <svg cIcon name="cilMap"></svg>
+                </span>
+                <input [(ngModel)]="estado" 
+                        name="estado" 
+                        type="text" 
+                        class="form-control" 
+                        placeholder="Estado" 
+                        aria-label="estado"
+                        maxlength="2"
+                        title="Digite a sigla do estado (ex: SP, RJ)">
+              </div>
+
+              <c-input-group class="mb-3">
+                <span cInputGroupText>
+                  <svg cIcon name="cilMap"></svg>
+                </span>
+                <input [(ngModel)]="cep" name="cep" autoComplete="cep" cFormControl placeholder="Cep" />
+              </c-input-group>
+
+              <c-form-check sizing="lg" switch class="mb-3">
+                <input cFormCheckInput type="checkbox" [(ngModel)]="admin" name="admin"/>
+                <label cFormCheckLabel> Admistrador</label>
+              </c-form-check>
+        
+              <div class="d-grid">
+                <button cButton color="success" (click)="criarUsuario()">Criar Conta</button>
+              </div>
+            </form>
+          </c-card-body>
+        </c-card>
+      </c-col>
+    </c-row>
+  </c-container>
+
+  <div *ngIf="mensagensErro && getCamposErro().length > 0">
+    <div *ngFor="let campo of getCamposErro()">
+      <c-toast [autohide]="true" [fade]="false" [visible]="visivel">
+        <c-toast-header>
+          Corrigir
+        </c-toast-header>
+        <c-toast-body>{{ mensagensErro[campo] }}</c-toast-body>
+      </c-toast>
+    </div>
+  </div>
+</div>
